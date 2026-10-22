@@ -1,0 +1,36 @@
+{
+  "name": "remotion-master",
+  "version": "1.0.0",
+  "description": "All-in-One Autonomous Motion Graphics Engine & Microstock Production Suite powered by Remotion, React, Three.js, and Spring Physics.",
+  "author": "Md. Asikur Rahman <https://github.com/smasikurr>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smasikurr/RemotionMaster.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "dev": "remotion studio src/index.ts",
+    "studio": "remotion studio src/index.ts",
+    "build": "remotion bundle src/index.ts",
+    "render": "remotion render src/index.ts",
+    "render:all": "node scripts/render_all.js",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.260",
+    "@remotion/google-fonts": "^4.0.260",
+    "@remotion/noise": "^4.0.260",
+    "@remotion/paths": "^4.0.260",
+    "@remotion/three": "^4.0.260",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remotion": "^4.0.260",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/three": "^0.186.0",
+    "typescript": "^5.6.3"
+  }
+}
