@@ -56,7 +56,9 @@ Every skill is immediately available for **Claude Desktop, Claude Code, Antigrav
 | **ui-ux-pro-max** | [`.agents/skills/ui-ux-pro-max`](./.agents/skills/ui-ux-pro-max) | 50+ design styles, 97 color palettes, 57 font pairings, 99 UX guidelines, and 25 charts. |
 | **copywriting** | [`.agents/skills/copywriting`](./.agents/skills/copywriting) | Conversion copywriting frameworks, viral hooks, and high-impact micro-copy for promo videos. |
 
-> **Direct Claude Upload:** To use in Claude.ai Web or Claude Projects, simply upload [`CLAUDE_UPLOAD_SKILL.md`](./CLAUDE_UPLOAD_SKILL.md) directly to your project knowledge!
+> **Direct Claude Upload Options:**
+> - **1-Click Official Claude Skill Install:** In Claude Desktop / Web, go to **Settings → Capabilities → Skills → Upload Skill** and upload [`remotion-master.skill`](./remotion-master.skill). It automatically unpacks the full skill with `SKILL.md`, `theme.ts`, `design-rules.md`, and `motion-patterns.md`!
+> - **Claude Project Knowledge Upload:** In Claude.ai Web Projects, you can also upload [`CLAUDE_UPLOAD_SKILL.md`](./CLAUDE_UPLOAD_SKILL.md) directly to your project knowledge!
 
 ---
 
@@ -188,6 +190,7 @@ We express our deepest gratitude to the visionary creators and communities whose
 8. **[NextLevelBuilder](https://github.com/nextlevelbuilder)** — For [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) (50+ design styles, 97 colors, 57 font pairings).
 9. **[Corey Haines](https://github.com/coreyhaines31)** — For [marketingskills](https://github.com/coreyhaines31/marketingskills) (conversion copywriting frameworks).
 10. **[Remotion Claude Video Community](https://github.com/remotion-claude-video)** — For the Claude Code video starter kit workflows.
+11. **[Haidar (haidrrrry)](https://github.com/haidrrrry)** — For [claude-remotion-skill](https://github.com/haidrrrry/claude-remotion-skill) (Claude skill packaging architecture, theme.ts specifications, and design reference patterns).
 
 ---
 
