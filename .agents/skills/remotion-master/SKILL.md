@@ -1,100 +1,80 @@
 ---
 name: remotion-master
-description: The ultimate all-in-one autonomous Remotion motion graphics engine, 4K video producer, and component suite. Combines 201+ After Effects-style scene primitives, Cinetic cinematic motion laws, Remotion official APIs, Spring physics presets, and automated prompt-to-video production workflows for Adobe Stock, Shutterstock, social media, and SaaS promo films.
-version: 1.0.0
-author: Md. Asikur Rahman <https://github.com/smasikurr/RemotionMaster>
+description: Create and edit professional motion graphics videos, 4K commercial stock footage, and promotional animations with Remotion. Use this skill EVERY time the user wants to create a video, animate something, render 4K motion graphics, build an e-commerce sale tag, Cyberpunk HUD, particle wave, logo reveal, or mentions Remotion, After Effects animation, stock video rendering, or "make this video look professional/commercial grade". Combines 221+ After Effects scene primitives, calibrated spring physics, and autonomous verification loops. Always read this skill BEFORE writing any Remotion code.
 ---
 
-# Remotion Master (The Unified All-in-One Motion Engine)
+# Remotion Master (Autonomous Motion Graphics Engine)
 
-`Remotion Master` is the comprehensive, unified production framework combining the best of Remotion 4+, After Effects motion primitives, Cinetic motion laws, and autonomous prompt-to-video pipelines.
-
----
-
-## 🏛️ Core Architectural Pillars
-
-### 1. Remotion Core & Mathematical Determinism
-- **Frame-Driven Rendering:** Everything is a pure mathematical function of `useCurrentFrame()` and `useVideoConfig()`.
-- **Absolute 60 FPS Standard:** Ensures buttery-smooth motion with zero micro-stutters or frame skips.
-- **Seamless Mathematical Loops:** Looping animations use modular trigonometric functions ($t \in [0, 2\pi]$) or modulo periods ($frame \pmod{period}$) so frame 0 matches frame $N$ seamlessly without pop.
-
-### 2. Spring Physics (Prefer `spring()` over `interpolate()`)
-- Never use rigid linear interpolation for UI or organic elements.
-- Available Spring Presets in `src/physics/springs.ts`:
-  - `snappy`: `{ damping: 20, stiffness: 200, mass: 1 }` (Snappy UI cards, buttons, badges)
-  - `bouncy`: `{ damping: 8, stiffness: 100, mass: 1 }` (Playful reveals, celebratory elements)
-  - `smooth`: `{ damping: 200, stiffness: 100, mass: 1 }` (Luxury typography, subtle camera drifts)
-  - `heavy`: `{ damping: 15, stiffness: 80, mass: 2 }` (Heavy objects, 3D hardware)
-  - `elastic`: `{ damping: 6, stiffness: 150, mass: 0.8 }` (Comic/cartoon bursts)
-
-### 3. Cinetic Film Direction & Motion Laws
-- **One Primary Focal Point:** In every shot, one hero element commands attention.
-- **Beat-Locked Timing Grid:** All cuts, reveals, and motion peaks sit on 16th-note subdivisions derived from the timeline BPM.
-- **Restraint Over Decoration:** Eliminate clutter. No generic floating icons, sparkles without meaning, or unmotivated elements.
-- **Living Camera Drift:** Slow, imperceptible camera motion (0.3 to 1.5 px/f) keeps holds feeling organic.
-
-### 4. 201+ Production-Ready After Effects Scene Library (`src/scenes/`)
-Directly importable scene components across 16 categories:
-1. `BackgroundAnimations` (10 scenes: Aurora, Bokeh, FlowingGradient, Grid, Waves, Mesh...)
-2. `CinematicAnimations` (10 scenes: SciFi, Epic, Noir, Anime, Vintage, Action...)
-3. `DataAnimations` (8 scenes: BarChart, LineChart, Gauge, StatsCards, Timeline...)
-4. `DemoAnimations` (12 scenes: CursorClick, SearchFilter, ZoomFocus, PageTransition...)
-5. `EffectAnimations` (10 scenes: VHS, FilmGrain, LightLeak, Glow, Matrix, Chromatic...)
-6. `LayoutAnimations` (12 scenes: SplitContrast, FrameInFrame, OffGrid...)
-7. `LiquidAnimations` (10 scenes: CalligraphyInk, FluidWave, InkSplash, PaintDrip...)
-8. `ListAnimations` (12 scenes: Staggered, HeroWithList, NumberedVertical...)
-9. `LogoAnimations` (10 scenes: 3DRotate, Glitch, LightTrail, MaskReveal...)
-10. `ParticleAnimations` (10 scenes: Fireworks, Lightning, Sparks, Smoke, Snow, Confetti...)
-11. `RollerAnimations` (22 scenes: SplitFlap, SlotMachine, 3DCarousel, Countdown...)
-12. `ShapeAnimations` (10 scenes: 3DCube, Mandala, Helix, HexGrid, Ripples...)
-13. `TextAnimations` (12 scenes: Kinetic, Glitch, Neon, Typewriter, MaskReveal...)
-14. `ThemeAnimations` (33 aesthetic styles: Cyberpunk, Luxury, Neobrutalism, Y2K, Bauhaus...)
-15. `TransitionAnimations` (10 scenes: LiquidMorph, ZoomBlur, CircleWipe, LineSweep...)
-16. `UIAnimations` (10 scenes: Button, Card, Dropdown, Modal, Navigation, Toggle...)
+Remotion renders React components frame-by-frame into broadcast-quality video. Code quality is not the bottleneck — **motion design craft, spring physics, and visual Polish are**. 
+Untrained generation produces linear easing, opacity-only fades, simultaneous entrances, flat colors, and static holds. That is the "generic AI video" look. This skill exists to ensure every output looks like an elite After Effects commercial template.
 
 ---
 
-## 🚀 Autonomous Production Workflow (4 Steps)
+## 🏛️ 10 Non-Negotiable Rules (Apply to EVERY Composition)
 
-Whenever instructed to create, research, or produce stock motion graphics:
-
-### Step 1: Market Research & Visual Anatomy
-- Identify trending, high-demand topics on Adobe Stock, Shutterstock, or social feeds.
-- Define the **Visual Anatomy**, **Color Palette (Hex)**, **Blend Mode / Keying Screen**, and **Target Buyer Use Case**.
-
-### Step 2: Composition Scripting & Architecture
-- Choose or combine primitives from `src/scenes/` and `src/presets/`.
-- Ensure platform compliance:
-  - 100% trademark-free (zero brand logos, generic UI icons).
-  - 4K UHD (3840×2160) @ 60 FPS standard (or 1080p / 9:16 vertical when requested).
-  - Pure black (`#000000`) for `Screen`/`Add` blend modes or pure chroma green (`#00FF00`) for keying.
-
-### Step 3: Compilation & Autonomous Validation
-- Register the composition in `src/Root.tsx`.
-- Test bundle using `npx remotion compositions src/index.ts`.
-- If any TypeScript error occurs, read the log and auto-fix immediately.
-
-### Step 4: Deterministic Rendering & Delivery
-- Render using:
-  ```bash
-  npx remotion render src/index.ts <CompositionId> out/<filename>.mp4 --codec h264 --crf 17 --concurrency 4
-  ```
-- Generate 35+ high-performing commercial SEO tags, titles, and descriptions.
+1. **NEVER use linear interpolation.** Every `interpolate()` gets an easing curve; every entrance prefers calibrated `spring()`. Always set `{ extrapolateLeft: "clamp", extrapolateRight: "clamp" }`.
+2. **Entrances animate 2–3 properties together** (`opacity` + `translateY` + `scale`). A lone fade is strictly forbidden.
+3. **Stagger everything.** Lists, characters, rays, particles: 2–5 frame offsets. Nothing enters simultaneously.
+4. **Exits exist and are faster than entrances** (~10 frames vs ~25 frames).
+5. **Idle elements must breathe**: anything on screen >2 seconds gets subtle trigonometric sine-wave micro-motion (`Math.sin(frame * 0.05) * 6`).
+6. **Calibrated Spring Physics**: Use the 5 calibrated spring presets (`snappy`, `bouncy`, `smooth`, `heavy`, `elastic`) from `src/physics/springs.ts` or `assets/theme.ts`.
+7. **Clean Microstock Screen Backgrounds**:
+   - For alpha keying: Pure solid Chroma Key Green (`#00FF00`) with zero gradient.
+   - For Screen/Add overlay: Pure solid Black (`#000000`).
+8. **Mathematical Seamless Loops**: Stock loops must satisfy $frame_0 == frame_{end}$ through modulo trigonometry ($2\pi \cdot frame / period$).
+9. **Single Theme Object**: Always import or declare colors, spring configs, and font families at the top of the file. Never inline arbitrary hex codes across components.
+10. **Render, Extract Frames, LOOK at them, Fix, Deliver**: Never deliver an unverified render. Extract keyframes with `npx remotion still` and visually inspect before delivering.
 
 ---
 
-## 🛠️ CLI Quick Reference
+## 🚀 5-Step Autonomous Workflow
 
+### Step 1 — Scope & Anatomy
+Determine:
+- **Resolution & FPS**: Default to **4K UHD (3840×2160) @ 60 FPS** for commercial stock footage.
+- **Duration**: 10.00 seconds (600 frames @ 60 FPS) standard seamless loop.
+- **Background Mode**: Chroma Green `#00FF00` or Pure Black `#000000`.
+- **Focal Hero Element**: Define the primary focal point (e.g., Hanging Price Tag, 3D Typography, HUD Reticle).
+
+### Step 2 — Theme & Setup
+Reference `assets/theme.ts` for calibrated spring physics and color palettes:
+- `theme.spring.snappy` (Cards, buttons, tags)
+- `theme.spring.bouncy` (Playful reveals, celebratory elements)
+- `theme.spring.smooth` (Luxury titles, smooth drifts)
+- `theme.spring.elastic` (Cartoon bursts)
+
+### Step 3 — Build with 221+ Scene Primitives
+Read `references/motion-patterns.md` and browse `src/scenes/` for reusable components across 16 categories:
+- Backgrounds: Aurora, Nebula, Cyberpunk Grid
+- Liquid: Fluid Waves, Metaballs, Ink Splash
+- Particles: Confetti, Cosmic Dust, Galaxy Orbit
+- Typography: Wave-Jumping Letters, Kinetic Glitch, Neon Glow
+- Transitions: Liquid Morph, Shutter Wipe, Zoom Blur
+
+Scene rhythm: **HIT** (fast spring entrance in first 15 frames) ➔ **HOLD & BREATHE** (living idle wave) ➔ **LOOP**.
+
+### Step 4 — Autonomous Verification (MANDATORY)
+Before delivering, extract key frames at 10%, 25%, and 50% of the timeline to visually inspect geometry, contrast, and alignment:
 ```bash
-# Start Interactive Studio
-npm run studio
-
-# Render a specific composition to 4K MP4
-npx remotion render src/index.ts <CompositionName> out/video.mp4 --crf 17
-
-# Render a high-resolution preview screenshot
-npx remotion still src/index.ts <CompositionName> out/preview.png --frame 120
-
-# Check TypeScript integrity
-npm run check
+npx remotion still src/index.ts <CompositionId> out/check_frame.png --frame 80 --overwrite
 ```
+Checklist:
+- [ ] Is content strictly centered and within safe margins?
+- [ ] Is the green screen background pure `#00FF00` with zero bleed?
+- [ ] Are typography elements crisp, high-contrast, and readable?
+- [ ] Do swinging elements follow authentic pendulum trigonometry?
+
+### Step 5 — 4K Broadcast Render
+Render with visually lossless CRF 17 using 4x concurrency:
+```bash
+npx remotion render src/index.ts <CompositionId> out/video_4k.mp4 --codec h264 --crf 17 --concurrency 4
+```
+
+---
+
+## 🛠️ Common Pitfalls & How to Avoid Them
+
+1. **Missing Clamp**: Omitting `{ extrapolateLeft: "clamp", extrapolateRight: "clamp" }` causes elements to fly off into infinity before frame 0.
+2. **Local Coordinate Clip-Path Bug**: When applying `<clipPath>` to a translated `<g>` element in SVG, coordinate origins shift to `(0, 0)` of the group. Always use relative coordinates inside `<clipPath>`.
+3. **Hard-coded Frame Numbers**: Always derive timing from `useVideoConfig().fps`.
+4. **Linear Sliders**: Replace linear value shifts with damped spring physics for realistic organic inertia.
