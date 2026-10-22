@@ -2,14 +2,14 @@
 
 <p align="center">
   <strong>The Ultimate All-in-One Programmatic Video Producer for Remotion, Claude & Antigravity</strong><br>
-  <em>Combines 221+ After Effects Scene Primitives, Calibrated Spring Physics, Cinetic Motion Laws, and 4 Pre-installed AI Skills.</em>
+  <em>Combines 221+ After Effects Scene Primitives, Calibrated Spring Physics, Cinetic Motion Laws, and Pre-installed AI Skills.</em>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Remotion-4.0+-blue?style=for-the-badge&logo=react" alt="Remotion 4.0+" />
   <img src="https://img.shields.io/badge/4K_UHD-60_FPS-critical?style=for-the-badge" alt="4K 60FPS" />
   <img src="https://img.shields.io/badge/AE_Scenes-221+-success?style=for-the-badge" alt="221+ AE Scenes" />
-  <img src="https://img.shields.io/badge/AI_Skills-4_Pre--installed-purple?style=for-the-badge&logo=anthropic" alt="4 AI Skills" />
+  <img src="https://img.shields.io/badge/AI_Skills-Pre--installed-purple?style=for-the-badge&logo=anthropic" alt="AI Skills" />
   <img src="https://img.shields.io/badge/License-MIT-brightgreen?style=for-the-badge" alt="License MIT" />
 </p>
 
@@ -19,18 +19,19 @@
 
 **Remotion Master** is the world's most comprehensive, production-ready motion graphics repository and AI video starter kit. It bridges the gap between pure programmatic video code and high-end After Effects motion design.
 
-With **Remotion Master**, you don't start from an empty timeline. You get **221+ ready-to-use After Effects scene primitives**, mathematically calibrated spring physics, 4 pre-installed Claude & Antigravity skills, copy-paste prompts, and 10 pre-built 4K commercial stock footage presets.
+With **Remotion Master**, you don't start from an empty timeline. You get **221+ ready-to-use After Effects scene primitives**, mathematically calibrated spring physics, pre-installed Claude & Antigravity skills, copy-paste prompts, and 10 pre-built 4K commercial stock footage presets.
 
 ---
 
-## ⚡ 4 Pre-Installed AI Skills (`.agents/skills/`)
+## ⚡ Pre-Installed AI Skills (`.agents/skills/`)
 
-When you clone this repo, four powerful skills are pre-installed in `.agents/skills/` and automatically discovered by **Claude Code, Claude Desktop, Antigravity, and Cursor**:
+When you clone this repo, five powerful skills are pre-installed in `.agents/skills/` and automatically discovered by **Claude Code, Claude Desktop, Antigravity, and Cursor**:
 
 | Skill | Folder | Capabilities |
 | :--- | :--- | :--- |
 | **remotion-master** | [`.agents/skills/remotion-master`](./.agents/skills/remotion-master) | The all-in-one autonomous motion engine combining Cinetic laws, Spring physics, and prompt-to-video pipelines. |
-| **remotion-best-practices** | [`.agents/skills/remotion-best-practices`](./.agents/skills/remotion-best-practices) | The official Remotion skill featuring 30+ rules for animations, transitions, 3D Three.js, audio, and captions. |
+| **remotion-claude-code-skill** | [`.agents/skills/remotion-claude-code-skill`](./.agents/skills/remotion-claude-code-skill) | The official Remotion Claude Code skill from Remotion Core team (`remotion-dev/remotion-claude-code-skill`). |
+| **remotion-best-practices** | [`.agents/skills/remotion-best-practices`](./.agents/skills/remotion-best-practices) | 30+ official Remotion rules for animations, transitions, 3D Three.js, audio, and captions. |
 | **ui-ux-pro-max** | [`.agents/skills/ui-ux-pro-max`](./.agents/skills/ui-ux-pro-max) | 50+ design styles, 97 color palettes, 57 font pairings, 99 UX guidelines, and 25 chart architectures. |
 | **copywriting** | [`.agents/skills/copywriting`](./.agents/skills/copywriting) | Conversion copywriting frameworks, viral hooks, and high-impact micro-copy for promotional motion videos. |
 
@@ -57,7 +58,7 @@ Every scene is a standalone React component ready to sequence, loop, or composit
 | [RollerAnimations](./src/scenes/RollerAnimations) | 22 | Split-Flap Displays, Slot Machines, 3D Carousels, Digital Countdowns |
 | [LayoutAnimations](./src/scenes/LayoutAnimations) | 12 | Asymmetric Split, Picture-in-Picture, Dynamic Multi-Panel Grids |
 | [DemoAnimations](./src/scenes/DemoAnimations) | 12 | Realistic Mouse Cursors, Page Scrolling, Interactive App Walkthroughs |
-| [ListAnimations](./src/scenes/ListAnimations) | 12 | Staggered Feature Cards, Numbered Roadmaps, Pricing Tables |
+| [ListAnimations](./src/scenes/ListAnimations) | 12 | Feature Lists, Numbered Roadmaps, Pricing Tables |
 
 ---
 
@@ -101,6 +102,7 @@ RemotionMaster/
 ├── .agents/
 │   └── skills/
 │       ├── remotion-master/           # Unified All-in-One Motion Engine Skill
+│       ├── remotion-claude-code-skill # Official Remotion Claude Code Skill
 │       ├── remotion-best-practices/   # 30+ Official Remotion Best Practice Rules
 │       ├── ui-ux-pro-max/             # 50+ Design Styles & Design Systems
 │       └── copywriting/               # Conversion Copywriting Frameworks
@@ -169,12 +171,39 @@ The agent will automatically read `.agents/skills/`, combine components from `sr
 
 ---
 
+## 🙏 Credits & Acknowledgements
+
+**Remotion Master** stands on the shoulders of the extraordinary open-source motion graphics and developer communities. We give our deepest respect, credit, and gratitude to:
+
+1. **[Remotion Core Team & Jonny Burger](https://github.com/remotion-dev)**:
+   - For creating [Remotion](https://github.com/remotion-dev/remotion) — the revolutionary React programmatic video creation framework.
+   - For creating the official [remotion-claude-code-skill](https://github.com/remotion-dev/remotion-claude-code-skill) and [skills](https://github.com/remotion-dev/skills) repository.
+   - For the [template-prompt-to-motion-graphics-saas](https://github.com/remotion-dev/template-prompt-to-motion-graphics-saas) starter.
+
+2. **[LifePrompt Team](https://github.com/lifeprompt-team)**:
+   - For authoring [remotion-scenes](https://github.com/lifeprompt-team/remotion-scenes) — the magnificent library of 201+ After Effects motion primitives and UI scene components.
+
+3. **[Remotion Claude Video Community](https://github.com/remotion-claude-video)**:
+   - For the Remotion + Claude Code starter kit architecture and YouTube tutorials.
+
+4. **[NextLevelBuilder](https://github.com/nextlevelbuilder)**:
+   - For the [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) — the comprehensive design intelligence database of 50+ styles, 97 color palettes, and 57 font pairings.
+
+5. **[Corey Haines](https://github.com/coreyhaines31)**:
+   - For the [marketingskills](https://github.com/coreyhaines31/marketingskills) conversion copywriting frameworks and CTA best practices.
+
+6. **[Leonxlnx](https://github.com/Leonxlnx)**:
+   - For [cinetic](https://github.com/Leonxlnx/cinetic) — the premium cinematic motion design laws, 16th-beat timing grids, and living camera drift principles.
+
+---
+
 ## 🇧🇩 বাংলা নির্দেশিকা (Bangla Quick Guide)
 
 ১. **ক্লোন ও সেটআপ:** টার্মিনালে `git clone https://github.com/smasikurr/RemotionMaster.git` দিয়ে ক্লোন করে `npm install` দিন।
 ২. **লাইভ স্টুডিও দেখা:** `npm run studio` দিলে ব্রাউজারে একটি ফুল ভিজ্যুয়াল প্লেয়ার ওপেন হবে, যেখানে ২২১টিরও বেশি সিন এবং ১০টি 4K প্রিসেট সরাসরি প্লে ও স্ক্রাব করে দেখতে পারবেন।
 ৩. **4K ভিডিও রেন্ডার:** `npm run render` দিলে যেকোনো কম্পোজিশন সাথে সাথে সর্বোচ্চ কোয়ালিটিতে 4K UHD ৬০FPS MP4 ফাইলে রেন্ডার হবে।
-৪. **এআই স্কিলস:** এই প্রজেক্টের `.agents/skills/` ফোল্ডারে ৪টি বিশ্বমানের স্কিল বিল্ট-ইন রয়েছে, তাই ক্লড বা অন্য যেকোনো এআই এজেন্টকে বললেই সে নিজে নিজে মোশন ভিডিওর কোড লিখে রেন্ডার করে দিতে পারবে।
+৪. **এআই স্কিলস:** এই প্রজেক্টের `.agents/skills/` ফোল্ডারে ৫টি বিশ্বমানের স্কিল বিল্ট-ইন রয়েছে (Remotion Master, Official Remotion Claude Code Skill, Best Practices, UI/UX Pro Max, ও Copywriting), তাই ক্লড বা অন্য যেকোনো এআই এজেন্টকে বললেই সে নিজে নিজে মোশন ভিডিওর কোড লিখে রেন্ডার করে দিতে পারবে।
+৫. **ওপেন সোর্স কৃতজ্ঞতা:** এই প্রজেক্টটিতে রিমোশন অফিসিয়াল টিম, লাইফপ্রম্পট টিম, সিনেটিক ও ইউআই/ইউএক্স প্রো ম্যাক্স নির্মাতাদের প্রতি পূর্ণ সম্মান ও কৃতজ্ঞতা প্রকাশ করা হয়েছে।
 
 ---
 
