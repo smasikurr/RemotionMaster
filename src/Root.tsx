@@ -14,6 +14,7 @@ import { MegaSaleBannerConfetti4K } from "./presets/MegaSaleBannerConfetti4K";
 import { AmbientOpticalLensFlares4K } from "./presets/AmbientOpticalLensFlares4K";
 import { VintageFilmBurnOpticalLeak4K } from "./presets/VintageFilmBurnOpticalLeak4K";
 import { GeometricHalftoneDotGridWave4K } from "./presets/GeometricHalftoneDotGridWave4K";
+import { AbstractMinimalistGeometricPulseVertical4K } from "./presets/AbstractMinimalistGeometricPulseVertical4K";
 
 // 2. Select AE Scene Samples from 201+ Library
 import { BackgroundAurora } from "./scenes/BackgroundAnimations/BackgroundAurora";
@@ -126,6 +127,14 @@ export const RemotionRoot: React.FC = () => {
           fps={60}
           width={3840}
           height={2160}
+        />
+        <Composition
+          id="AbstractMinimalistGeometricPulseVertical4K"
+          component={AbstractMinimalistGeometricPulseVertical4K}
+          durationInFrames={720}
+          fps={60}
+          width={2160}
+          height={3840}
         />
       </Folder>
 
