@@ -12,6 +12,7 @@ import { LiquidInkSpreadLumaMatte4K } from "./presets/LiquidInkSpreadLumaMatte4K
 import { CorporatePlexusDataNetwork4K } from "./presets/CorporatePlexusDataNetwork4K";
 import { MegaSaleBannerConfetti4K } from "./presets/MegaSaleBannerConfetti4K";
 import { AmbientOpticalLensFlares4K } from "./presets/AmbientOpticalLensFlares4K";
+import { VintageFilmBurnOpticalLeak4K } from "./presets/VintageFilmBurnOpticalLeak4K";
 
 // 2. Select AE Scene Samples from 201+ Library
 import { BackgroundAurora } from "./scenes/BackgroundAnimations/BackgroundAurora";
@@ -105,6 +106,14 @@ export const RemotionRoot: React.FC = () => {
           id="AmbientOpticalLensFlares4K"
           component={AmbientOpticalLensFlares4K}
           durationInFrames={600}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="VintageFilmBurnOpticalLeak4K"
+          component={VintageFilmBurnOpticalLeak4K}
+          durationInFrames={720}
           fps={60}
           width={3840}
           height={2160}
