@@ -17,6 +17,7 @@ export { TextTypewriter } from "./TextTypewriter";
 export { TextCounter } from "./TextCounter";
 export { TextGradient } from "./TextGradient";
 export { TextExplode } from "./TextExplode";
+export { CodeSyntaxMorpher } from "./CodeSyntaxMorpher";
 
 // Showcase component
 import { AbsoluteFill, Sequence } from "remotion";

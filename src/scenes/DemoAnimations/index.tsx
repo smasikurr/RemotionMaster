@@ -16,6 +16,7 @@ import { DemoModal } from "./DemoModal";
 import { DemoWizard } from "./DemoWizard";
 import { DemoSearchFilter } from "./DemoSearchFilter";
 import { DemoAddressBar } from "./DemoAddressBar";
+import { SyntheticTerminalScene } from "./SyntheticTerminalScene";
 
 export {
   DemoCursorClick,
@@ -30,6 +31,7 @@ export {
   DemoWizard,
   DemoSearchFilter,
   DemoAddressBar,
+  SyntheticTerminalScene,
 };
 
 // Showcase component

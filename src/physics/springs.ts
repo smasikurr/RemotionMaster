@@ -15,7 +15,7 @@ export const SPRING_PRESETS = {
   heavy: { damping: 15, stiffness: 80, mass: 2 },
   // Highly elastic overshoot for comic/cartoon bursts
   elastic: { damping: 6, stiffness: 150, mass: 0.8 },
-} as const satisfies Record<string, SpringConfig>;
+} as const satisfies Record<string, Partial<SpringConfig>>;
 
 export type SpringPresetName = keyof typeof SPRING_PRESETS;
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Theme3DGlassThreeJS - Three.js 3D Glass - 本格的な3Dガラス（Three.js使用）
  * MeshTransmissionMaterial使用

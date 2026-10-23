@@ -15,6 +15,7 @@ export { ShapeCircularProgress } from "./ShapeCircularProgress";
 export { ShapeExplosion } from "./ShapeExplosion";
 export { ShapeHelix } from "./ShapeHelix";
 export { ShapeMandala } from "./ShapeMandala";
+export { MathCoordinatePlane } from "./MathCoordinatePlane";
 
 // Showcase component
 import { AbsoluteFill, Sequence } from "remotion";

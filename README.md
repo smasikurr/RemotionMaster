@@ -72,17 +72,17 @@ Every scene is a standalone React component ready to sequence, loop, or composit
 | [LiquidAnimations](./src/scenes/LiquidAnimations) | 10 | Fluid Waves, Metaballs, Ink Splash, Marble Swirls, Paint Drips |
 | [ParticleAnimations](./src/scenes/ParticleAnimations) | 10 | Confetti, Cosmic Dust, Galaxy Orbit, Fireworks, Lightning Sparks |
 | [CinematicAnimations](./src/scenes/CinematicAnimations) | 10 | Sci-Fi Telemetry, Epic Titles, Light Leaks, Film Burn Overlays |
-| [TextAnimations](./src/scenes/TextAnimations) | 12 | Kinetic Typography, Glitch Text, 3D Neon, Typewriter, Mask Reveal |
+| [TextAnimations](./src/scenes/TextAnimations) | 13 | Kinetic Typography, Glitch Text, 3D Neon, Code Syntax Morpher (Motion Canvas) |
 | [ThemeAnimations](./src/scenes/ThemeAnimations) | 33 | 3D Glass, Art Deco, Cyberpunk, Neobrutalism, Y2K, Bauhaus, Luxury |
 | [TransitionAnimations](./src/scenes/TransitionAnimations) | 10 | Liquid Morph, Shutter Wipe, Zoom Blur, Circular Reveal, Glitch Slice |
 | [UIAnimations](./src/scenes/UIAnimations) | 10 | Interactive Buttons, Cards, Modals, Dynamic Toasts, Navigation Bars |
-| [ShapeAnimations](./src/scenes/ShapeAnimations) | 10 | Mandalas, 3D Cubes, DNA Helix, Hexagonal Tech Grids, Sound Ripples |
+| [ShapeAnimations](./src/scenes/ShapeAnimations) | 11 | Mandalas, 3D Cubes, DNA Helix, Math Coordinate Plane (Manim) |
 | [DataAnimations](./src/scenes/DataAnimations) | 8 | Animated Bar Charts, Line Graphs, Circular Gauges, Financial Cards |
 | [EffectAnimations](./src/scenes/EffectAnimations) | 10 | Retro VHS Tracking, Film Grain, Scanlines, Chromatic Aberration |
 | [LogoAnimations](./src/scenes/LogoAnimations) | 10 | 3D Logo Spin, Metallic Edge Sweep, Particle Disintegration |
 | [RollerAnimations](./src/scenes/RollerAnimations) | 22 | Split-Flap Displays, Slot Machines, 3D Carousels, Digital Countdowns |
 | [LayoutAnimations](./src/scenes/LayoutAnimations) | 12 | Asymmetric Split, Picture-in-Picture, Dynamic Multi-Panel Grids |
-| [DemoAnimations](./src/scenes/DemoAnimations) | 12 | Realistic Mouse Cursors, Page Scrolling, Interactive App Walkthroughs |
+| [DemoAnimations](./src/scenes/DemoAnimations) | 13 | Realistic Mouse Cursors, Synthetic Terminal Console (OpenMontage), Page Scrolling |
 | [ListAnimations](./src/scenes/ListAnimations) | 12 | Feature Lists, Numbered Roadmaps, Pricing Tables |
 
 ---
@@ -191,6 +191,10 @@ We express our deepest gratitude to the visionary creators and communities whose
 9. **[Corey Haines](https://github.com/coreyhaines31)** — For [marketingskills](https://github.com/coreyhaines31/marketingskills) (conversion copywriting frameworks).
 10. **[Remotion Claude Video Community](https://github.com/remotion-claude-video)** — For the Claude Code video starter kit workflows.
 11. **[Haidar (haidrrrry)](https://github.com/haidrrrry)** — For [claude-remotion-skill](https://github.com/haidrrrry/claude-remotion-skill) (Claude skill packaging architecture, theme.ts specifications, and design reference patterns).
+12. **[Calesthio Team](https://github.com/calesthio/OpenMontage)** — For [OpenMontage](https://github.com/calesthio/OpenMontage) (agentic video pipelines, synthetic terminal scenes, style playbooks, and animated business charts).
+13. **[Jakub Florkiewicz & Motion Canvas Community](https://github.com/motion-canvas/motion-canvas)** — For [Motion Canvas](https://github.com/motion-canvas/motion-canvas) (programmatic vector splines, syntax-highlighted code morphing, and precision Bezier geometry).
+14. **[Jack Doyle & GreenSock Team](https://github.com/greensock/GSAP)** — For [GSAP](https://github.com/greensock/GSAP) (industry-standard motion physics, custom wiggles, gravitational bounces, and calibrated easing curves).
+15. **[Grant Sanderson & Manim Community](https://github.com/ManimCommunity/manim)** — For [Manim](https://github.com/ManimCommunity/manim) (mathematical coordinate plane plotting, parametric oscillations, and educational visual geometry).
 
 ---
 

@@ -130,3 +130,64 @@ export const FilmGrain: React.FC<{ opacity?: number }> = ({ opacity = 0.06 }) =>
   );
 };
 ```
+
+
+---
+
+## 7. Synthetic Terminal Animation (OpenMontage Pattern)
+Simulate command execution with character typing, status pills, and macOS top bar without screen recording:
+```tsx
+import { SyntheticTerminalScene } from "../src/scenes/DemoAnimations/SyntheticTerminalScene";
+
+<SyntheticTerminalScene
+  title="Autonomous Production Studio"
+  steps={[
+    { kind: "cmd", text: "npm install && npm run studio" },
+    { kind: "out", text: "✓ 221+ AE Scenes Compiled", color: "#38BDF8" },
+    { kind: "pill", text: "Verified 🚀", color: "#10B981" },
+  ]}
+  backgroundColor="#000000"
+/>
+```
+
+---
+
+## 8. Mathematical Coordinate Plane (Manim Pattern)
+Animate coordinate axes and parametric damped oscillator curves:
+```tsx
+import { MathCoordinatePlane } from "../src/scenes/ShapeAnimations/MathCoordinatePlane";
+
+<MathCoordinatePlane
+  functionTitle="f(x) = 2.4 · sin(2π · t + φ) · e^(-0.15t)"
+  curveColor="#00F0FF"
+  backgroundColor="#000000"
+/>
+```
+
+---
+
+## 9. Code Syntax Morpher (Motion Canvas Pattern)
+Syntax highlighted code animation with line-by-line staggered spring reveal and active tokens:
+```tsx
+import { CodeSyntaxMorpher } from "../src/scenes/TextAnimations/CodeSyntaxMorpher";
+
+<CodeSyntaxMorpher
+  filename="MasterVideoEngine.tsx"
+  language="TypeScript"
+  backgroundColor="#000000"
+/>
+```
+
+---
+
+## 10. GSAP Custom Wiggle & Bounce Physics (GreenSock Pattern)
+High-precision kinetic wiggles, camera shakes, and decayed gravitational bounce:
+```tsx
+import { customWiggle, customBounce, GSAP_EASINGS } from "../src/physics/gsapPhysics";
+
+// Organic camera jitter or hit reaction
+const shakeX = customWiggle({ frame, fps: 60, durationInSeconds: 0.8, amplitude: 14 });
+
+// Gravitational bounce progress (0 to 1)
+const bounceY = customBounce({ progress: frame / 60, bounces: 3 });
+```

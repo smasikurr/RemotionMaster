@@ -19,6 +19,11 @@ import { LiquidFluidWave } from "./scenes/LiquidAnimations/LiquidFluidWave";
 import { TextNeon } from "./scenes/TextAnimations/TextNeon";
 import { ShapeMandala } from "./scenes/ShapeAnimations/ShapeMandala";
 
+// 3. Advanced Developer, Vector & Math Scenes (OpenMontage, Motion Canvas & Manim Synthesized)
+import { SyntheticTerminalScene } from "./scenes/DemoAnimations/SyntheticTerminalScene";
+import { MathCoordinatePlane } from "./scenes/ShapeAnimations/MathCoordinatePlane";
+import { CodeSyntaxMorpher } from "./scenes/TextAnimations/CodeSyntaxMorpher";
+
 export const RemotionRoot: React.FC = () => {
   return (
     <>
@@ -139,6 +144,34 @@ export const RemotionRoot: React.FC = () => {
           fps={60}
           width={1920}
           height={1080}
+        />
+      </Folder>
+
+      {/* Developer, Vector & Mathematical Scenes */}
+      <Folder name="Developer-Math-Vector-Scenes">
+        <Composition
+          id="SyntheticTerminalSceneDemo"
+          component={SyntheticTerminalScene}
+          durationInFrames={600}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="MathCoordinatePlaneDemo"
+          component={MathCoordinatePlane}
+          durationInFrames={600}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="CodeSyntaxMorpherDemo"
+          component={CodeSyntaxMorpher}
+          durationInFrames={480}
+          fps={60}
+          width={3840}
+          height={2160}
         />
       </Folder>
     </>
