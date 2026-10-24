@@ -19,8 +19,7 @@ export const WaterSplashDropletsGreenScreen4K: React.FC<WaterSplashGreenScreenCa
     <AbsoluteFill style={{ backgroundColor: '#007400' }}>
       <WaterSplashGreenScreenCanvas
         greenColor="#007400"
-        dropletCount={380}
-        splashSpeed={1.0}
+        dropletCount={850}
         seed={48}
         {...props}
       />

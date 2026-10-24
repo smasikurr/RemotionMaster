@@ -1,3 +1,6 @@
+import { ElectricBlueLightningSpark4K } from "./presets/ElectricBlueLightningSpark4K";
+import { AnimeActionSpeedLines4K } from "./presets/AnimeActionSpeedLines4K";
+import { CinematicFilmBurnTransitions4K } from "./presets/CinematicFilmBurnTransitions4K";
 import { WaterSplashDropletsGreenScreen4K } from "./presets/WaterSplashDropletsGreenScreen4K";
 import { CyanFlutedGlassRefraction4K } from "./presets/CyanFlutedGlassRefraction4K";
 import { CompactCenterAudioWaveform4K } from "./presets/CompactCenterAudioWaveform4K";
@@ -955,6 +958,30 @@ export const RemotionRoot: React.FC = () => {
           id="GeometricLumaMatteLiquidWipe4K"
           component={GeometricLumaMatteLiquidWipe4K}
           durationInFrames={600}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="ElectricBlueLightningSpark4K"
+          component={ElectricBlueLightningSpark4K}
+          durationInFrames={331}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="AnimeActionSpeedLines4K"
+          component={AnimeActionSpeedLines4K}
+          durationInFrames={300}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="CinematicFilmBurnTransitions4K"
+          component={CinematicFilmBurnTransitions4K}
+          durationInFrames={360}
           fps={60}
           width={3840}
           height={2160}
