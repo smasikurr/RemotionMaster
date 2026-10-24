@@ -1,3 +1,4 @@
+import { StudioWhiteAudioSpectrumWaveform4K } from "./presets/StudioWhiteAudioSpectrumWaveform4K";
 import { CartoonFireworksConfettiBursts4K } from "./presets/CartoonFireworksConfettiBursts4K";
 import { ElectricCyanAudioSpectrumWaveform4K } from "./presets/ElectricCyanAudioSpectrumWaveform4K";
 import { VcrFastForwardGreenScreenOverlay4K } from "./presets/VcrFastForwardGreenScreenOverlay4K";
@@ -950,6 +951,14 @@ export const RemotionRoot: React.FC = () => {
         <Composition
           id="GeometricLumaMatteLiquidWipe4K"
           component={GeometricLumaMatteLiquidWipe4K}
+          durationInFrames={600}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="StudioWhiteAudioSpectrumWaveform4K"
+          component={StudioWhiteAudioSpectrumWaveform4K}
           durationInFrames={600}
           fps={60}
           width={3840}
