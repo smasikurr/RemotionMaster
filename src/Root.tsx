@@ -1,3 +1,5 @@
+import { CyanFlutedGlassRefraction4K } from "./presets/CyanFlutedGlassRefraction4K";
+import { CompactCenterAudioWaveform4K } from "./presets/CompactCenterAudioWaveform4K";
 import { StudioWhiteAudioSpectrumWaveform4K } from "./presets/StudioWhiteAudioSpectrumWaveform4K";
 import { CartoonFireworksConfettiBursts4K } from "./presets/CartoonFireworksConfettiBursts4K";
 import { ElectricCyanAudioSpectrumWaveform4K } from "./presets/ElectricCyanAudioSpectrumWaveform4K";
@@ -951,6 +953,22 @@ export const RemotionRoot: React.FC = () => {
         <Composition
           id="GeometricLumaMatteLiquidWipe4K"
           component={GeometricLumaMatteLiquidWipe4K}
+          durationInFrames={600}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="CyanFlutedGlassRefraction4K"
+          component={CyanFlutedGlassRefraction4K}
+          durationInFrames={900}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="CompactCenterAudioWaveform4K"
+          component={CompactCenterAudioWaveform4K}
           durationInFrames={600}
           fps={60}
           width={3840}
