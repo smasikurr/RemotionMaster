@@ -5,6 +5,9 @@ dist/
 *.mp4
 *.webm
 *.png
+*.jpg
+*.jpeg
+assets/ref*
 .env
 .cache
 .remotion
