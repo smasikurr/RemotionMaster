@@ -1,3 +1,5 @@
+import { CinematicDeepSpaceTwinklingStars4K } from "./presets/CinematicDeepSpaceTwinklingStars4K";
+import { GreenScreenPolaroidPhotoStack4K } from "./presets/GreenScreenPolaroidPhotoStack4K";
 import { CyberpunkOscilloscopeHUD4K } from "./presets/CyberpunkOscilloscopeHUD4K";
 import { MinimalistRedAudioSpectrumBellCurve4K } from "./presets/MinimalistRedAudioSpectrumBellCurve4K";
 import { CinematicRainOnGlassNightBokeh4K } from "./presets/CinematicRainOnGlassNightBokeh4K";
@@ -967,6 +969,22 @@ export const RemotionRoot: React.FC = () => {
           id="GeometricLumaMatteLiquidWipe4K"
           component={GeometricLumaMatteLiquidWipe4K}
           durationInFrames={600}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="CinematicDeepSpaceTwinklingStars4K"
+          component={CinematicDeepSpaceTwinklingStars4K}
+          durationInFrames={720}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="GreenScreenPolaroidPhotoStack4K"
+          component={GreenScreenPolaroidPhotoStack4K}
+          durationInFrames={840}
           fps={60}
           width={3840}
           height={2160}
