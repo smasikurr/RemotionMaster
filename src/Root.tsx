@@ -1,3 +1,4 @@
+import { MixedMediaCRTGlitchGrungeTransitions4K } from "./presets/MixedMediaCRTGlitchGrungeTransitions4K";
 import { VolumetricWhiteSmokeCloudBurst4K } from "./presets/VolumetricWhiteSmokeCloudBurst4K";
 import { VintagePhotocopierXeroxScanTexture4K } from "./presets/VintagePhotocopierXeroxScanTexture4K";
 import { RoyalSapphireSilkFluidWaves4K } from "./presets/RoyalSapphireSilkFluidWaves4K";
@@ -962,6 +963,14 @@ export const RemotionRoot: React.FC = () => {
           id="GeometricLumaMatteLiquidWipe4K"
           component={GeometricLumaMatteLiquidWipe4K}
           durationInFrames={600}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="MixedMediaCRTGlitchGrungeTransitions4K"
+          component={MixedMediaCRTGlitchGrungeTransitions4K}
+          durationInFrames={480}
           fps={60}
           width={3840}
           height={2160}
