@@ -63,38 +63,43 @@ export const MinimalistWhiteAudioSpectrumBarsCanvas: React.FC<
     // Center twin spikes: index 38 and 40
     const isCenterTwin = i === 38 || i === 40;
     const isCenterSide = i === 37 || i === 39 || i === 41;
-    const isInnerPeak = i === 33 || i === 45 || i === 29 || i === 49;
-    const isMidPeak = i === 24 || i === 54 || i === 19 || i === 59;
+    const isInnerPeak1 = i === 33 || i === 45;
+    const isInnerPeak2 = i === 28 || i === 50;
+    const isMidPeak1 = i === 23 || i === 55;
+    const isMidPeak2 = i === 18 || i === 60;
 
     // Harmonic wave oscillations across bars
-    const wave1 = Math.sin(time * 18.0 + i * 0.42);
-    const wave2 = Math.cos(time * 26.0 - i * 0.65);
+    const wave1 = Math.sin(time * 16.0 + i * 0.38);
+    const wave2 = Math.cos(time * 22.0 - i * 0.55);
+    const wave3 = Math.sin(time * 9.5 + i * 0.22);
 
-    // Bar base height envelope (tiny dots at ends, slightly taller towards center)
-    const baseFloor = 8.0 + 12.0 * b.envWide;
+    // Bar base height envelope (tiny dots at ends, smoothly rising towards center)
+    const baseFloor = 10.0 + 16.0 * b.envWide;
+
+    // Active musical body fill
+    const bodyWave = (0.35 + 0.35 * Math.abs(wave1) + 0.30 * Math.abs(wave2)) * b.envMain * 130.0;
 
     // Amplitude computation
-    let dynamicH = 0.0;
+    let dynamicH = bodyWave;
 
     if (isCenterTwin) {
       // Tallest twin spikes in the visualizer
-      const twinDrive = (0.55 + 0.45 * vocalP1) * (0.4 + 0.6 * kick) + 0.35 * Math.abs(wave1);
-      dynamicH = 450.0 + twinDrive * 950.0;
+      const twinDrive = (0.55 + 0.45 * vocalP1) * (0.35 + 0.65 * kick) + 0.35 * Math.abs(wave1);
+      dynamicH = 500.0 + twinDrive * 920.0;
     } else if (isCenterSide) {
-      dynamicH = 180.0 + (0.5 * kick + 0.5 * vocalP1) * 350.0;
-    } else if (isInnerPeak) {
-      const peakDrive = 0.4 * snare + 0.35 * vocalP2 + 0.25 * Math.abs(wave2);
-      dynamicH = 120.0 + peakDrive * 400.0 * b.envMain;
-    } else if (isMidPeak) {
-      dynamicH = 60.0 + (0.5 * snare + 0.5 * Math.abs(wave1)) * 260.0 * b.envMain;
-    } else {
-      // Intermediate fill bars: lower level jitter with subtle rhythm
-      const fillAmp = 0.15 + 0.25 * Math.max(0, wave1) + 0.15 * Math.max(0, wave2);
-      dynamicH = fillAmp * 160.0 * b.envMain;
+      dynamicH = 180.0 + (0.5 * kick + 0.5 * vocalP1) * 320.0;
+    } else if (isInnerPeak1) {
+      dynamicH = 220.0 + (0.45 * snare + 0.35 * vocalP2 + 0.2 * Math.abs(wave2)) * 380.0;
+    } else if (isInnerPeak2) {
+      dynamicH = 160.0 + (0.40 * kick + 0.35 * Math.abs(wave1) + 0.25 * vocalP1) * 320.0;
+    } else if (isMidPeak1) {
+      dynamicH = 110.0 + (0.45 * snare + 0.35 * Math.abs(wave3)) * 240.0;
+    } else if (isMidPeak2) {
+      dynamicH = 60.0 + (0.5 * Math.abs(wave1) + 0.5 * Math.abs(wave2)) * 160.0;
     }
 
     // Outer tail decay
-    const finalHeight = Math.max(baseFloor, dynamicH * b.envWide);
+    const finalHeight = Math.max(baseFloor, dynamicH);
 
     return {
       x: b.x,

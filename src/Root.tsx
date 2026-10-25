@@ -1,3 +1,4 @@
+import { MultiPeakRhythmicAudioWaveform4K } from "./presets/MultiPeakRhythmicAudioWaveform4K";
 import { MinimalistWhiteAudioSpectrumBars4K } from "./presets/MinimalistWhiteAudioSpectrumBars4K";
 import { CyanTurquoiseAuroraFluidWaves4K } from "./presets/CyanTurquoiseAuroraFluidWaves4K";
 import { VintageCRTSignalLossBeamCollapse4K } from "./presets/VintageCRTSignalLossBeamCollapse4K";
@@ -972,6 +973,14 @@ export const RemotionRoot: React.FC = () => {
           id="GeometricLumaMatteLiquidWipe4K"
           component={GeometricLumaMatteLiquidWipe4K}
           durationInFrames={600}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="MultiPeakRhythmicAudioWaveform4K"
+          component={MultiPeakRhythmicAudioWaveform4K}
+          durationInFrames={720}
           fps={60}
           width={3840}
           height={2160}
