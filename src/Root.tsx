@@ -1,3 +1,4 @@
+import { VintagePhotocopierXeroxScanTexture4K } from "./presets/VintagePhotocopierXeroxScanTexture4K";
 import { RoyalSapphireSilkFluidWaves4K } from "./presets/RoyalSapphireSilkFluidWaves4K";
 import { CRTStaticVHSGlitch4K } from "./presets/CRTStaticVHSGlitch4K";
 import { ElectricBlueLightningSpark4K } from "./presets/ElectricBlueLightningSpark4K";
@@ -960,6 +961,14 @@ export const RemotionRoot: React.FC = () => {
           id="GeometricLumaMatteLiquidWipe4K"
           component={GeometricLumaMatteLiquidWipe4K}
           durationInFrames={600}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="VintagePhotocopierXeroxScanTexture4K"
+          component={VintagePhotocopierXeroxScanTexture4K}
+          durationInFrames={444}
           fps={60}
           width={3840}
           height={2160}
