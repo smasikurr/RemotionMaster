@@ -1,3 +1,4 @@
+import { TicketLineIcon4K } from "./presets/TicketLineIcon4K";
 import { HalftoneCloudMatrix } from "./presets/HalftoneCloudMatrix";
 import { HalftoneParticleDotWaveTerrain4K } from "./presets/HalftoneParticleDotWaveTerrain4K";
 import { MultiPeakRhythmicAudioWaveform4K } from "./presets/MultiPeakRhythmicAudioWaveform4K";
@@ -975,6 +976,14 @@ export const RemotionRoot: React.FC = () => {
           id="GeometricLumaMatteLiquidWipe4K"
           component={GeometricLumaMatteLiquidWipe4K}
           durationInFrames={600}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="TicketLineIcon4K"
+          component={TicketLineIcon4K}
+          durationInFrames={720}
           fps={60}
           width={3840}
           height={2160}

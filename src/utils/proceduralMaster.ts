@@ -4,6 +4,8 @@
  */
 
 import { noise2D, noise3D, noise4D } from '@remotion/noise';
+import { evolvePath } from '@remotion/paths';
+import { interpolate, Easing } from 'remotion';
 
 /**
  * Standard Hermite interpolation smoothstep function.
@@ -142,4 +144,72 @@ export const generateHalftoneGrid = (
   }
 
   return { cols, rows, cells };
+};
+
+export interface TrimPathResult {
+  strokeDasharray: string;
+  strokeDashoffset: number;
+  progress: number;
+}
+
+/**
+ * Reusable After Effects-style Trim-Path animator for SVG paths.
+ * Animates path drawing smoothly from startFrame to endFrame using evolvePath()
+ * and industry-standard smooth cubic-bezier easing.
+ *
+ * @param pathData - SVG path string (e.g., 'M 0 0 L 100 100')
+ * @param startFrame - Frame where path drawing begins
+ * @param endFrame - Frame where path drawing finishes
+ * @param currentFrame - Active frame number from useCurrentFrame()
+ * @param reverse - If true, un-draws path from 1 back to 0
+ */
+export const drawTrimPath = (
+  pathData: string,
+  startFrame: number,
+  endFrame: number,
+  currentFrame: number,
+  reverse: boolean = false
+): TrimPathResult => {
+  if (startFrame >= endFrame) {
+    const rawProgress = currentFrame >= endFrame ? 1 : 0;
+    const p = reverse ? 1 - rawProgress : rawProgress;
+    const evolved = evolvePath(p, pathData);
+    return {
+      strokeDasharray: evolved.strokeDasharray,
+      strokeDashoffset: evolved.strokeDashoffset,
+      progress: p,
+    };
+  }
+
+  const rawProgress = interpolate(currentFrame, [startFrame, endFrame], [0, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+    easing: Easing.bezier(0.25, 0.1, 0.25, 1.0),
+  });
+
+  const p = reverse ? 1 - rawProgress : rawProgress;
+  const evolved = evolvePath(p, pathData);
+
+  return {
+    strokeDasharray: evolved.strokeDasharray,
+    strokeDashoffset: evolved.strokeDashoffset,
+    progress: p,
+  };
+};
+
+/**
+ * Two-way Trim-Path helper: draws in from inStart -> inEnd, holds, then reverses from outStart -> outEnd.
+ */
+export const drawTrimPathLoop = (
+  pathData: string,
+  inStart: number,
+  inEnd: number,
+  outStart: number,
+  outEnd: number,
+  currentFrame: number
+): TrimPathResult => {
+  if (currentFrame < outStart) {
+    return drawTrimPath(pathData, inStart, inEnd, currentFrame, false);
+  }
+  return drawTrimPath(pathData, outStart, outEnd, currentFrame, true);
 };
