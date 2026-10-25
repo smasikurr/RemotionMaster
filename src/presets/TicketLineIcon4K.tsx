@@ -8,7 +8,6 @@ export const TicketLineIcon4K: React.FC = () => {
       height={2160}
       strokeColor="#141414"
       strokeWidth={14}
-      barStrokeWidth={26}
       backgroundColor="#FFFFFF"
     />
   );
