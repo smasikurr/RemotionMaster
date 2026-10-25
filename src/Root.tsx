@@ -1,3 +1,4 @@
+import { MinimalistRedAudioSpectrumBellCurve4K } from "./presets/MinimalistRedAudioSpectrumBellCurve4K";
 import { CinematicRainOnGlassNightBokeh4K } from "./presets/CinematicRainOnGlassNightBokeh4K";
 import { CinematicInfernoFireWallFlameWipe4K } from "./presets/CinematicInfernoFireWallFlameWipe4K";
 import { MixedMediaCRTGlitchGrungeTransitions4K } from "./presets/MixedMediaCRTGlitchGrungeTransitions4K";
@@ -964,6 +965,14 @@ export const RemotionRoot: React.FC = () => {
         <Composition
           id="GeometricLumaMatteLiquidWipe4K"
           component={GeometricLumaMatteLiquidWipe4K}
+          durationInFrames={600}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="MinimalistRedAudioSpectrumBellCurve4K"
+          component={MinimalistRedAudioSpectrumBellCurve4K}
           durationInFrames={600}
           fps={60}
           width={3840}
