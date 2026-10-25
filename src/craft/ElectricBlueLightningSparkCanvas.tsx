@@ -31,21 +31,20 @@ export const ElectricBlueLightningSparkCanvas: React.FC<ElectricBlueLightningSpa
     };
 
     const list: Spark[] = [];
-    // 5 strike events: f=20, f=85, f=155, f=225, f=285
-    const strikeFrames = [20, 85, 155, 225, 285];
+    const strikeFrames = [12, 68, 130, 205, 275];
 
     for (const sf of strikeFrames) {
-      for (let i = 0; i < 45; i++) {
+      for (let i = 0; i < 60; i++) {
         const ang = -Math.PI * (0.05 + rnd() * 0.9); // upward fountain
-        const spd = 6 + rnd() * 22;
+        const spd = 8 + rnd() * 28;
         list.push({
-          x: width * (0.48 + (rnd() - 0.5) * 0.08),
+          x: width * (0.49 + (rnd() - 0.5) * 0.06),
           y: height * 0.82,
           vx: Math.cos(ang) * spd,
           vy: Math.sin(ang) * spd,
-          radius: 1.5 + rnd() * 3.5,
-          birthFrame: sf + Math.floor(rnd() * 4),
-          lifespan: 12 + Math.floor(rnd() * 16),
+          radius: 1.5 + rnd() * 4.0,
+          birthFrame: sf + Math.floor(rnd() * 8),
+          lifespan: 14 + Math.floor(rnd() * 18),
         });
       }
     }
@@ -62,18 +61,13 @@ export const ElectricBlueLightningSparkCanvas: React.FC<ElectricBlueLightningSpa
     ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, width, height);
 
-    // 5 Distinct Strike Windows
-    // Strike 1: Frames 18 to 32
-    // Strike 2: Frames 82 to 96
-    // Strike 3: Frames 150 to 166
-    // Strike 4: Frames 220 to 238
-    // Strike 5: Frames 280 to 298
+    // 5 Strike Windows matching Reference Timeline
     const strikeWindows = [
-      { start: 18, end: 32 },
-      { start: 82, end: 96 },
-      { start: 150, end: 166 },
-      { start: 220, end: 238 },
-      { start: 280, end: 298 },
+      { start: 12, end: 40 },
+      { start: 68, end: 98 },
+      { start: 130, end: 168 },
+      { start: 205, end: 242 },
+      { start: 275, end: 320 },
     ];
 
     let activeStrike: { start: number; end: number } | null = null;
@@ -105,14 +99,13 @@ export const ElectricBlueLightningSparkCanvas: React.FC<ElectricBlueLightningSpa
       const nx = -dy / len;
       const ny = dx / len;
 
-      // Deterministic PRNG based on coordinates & frame
-      const pseudoHash = Math.sin(p1[0] * 12.9898 + p2[1] * 78.233 + frame * 37.719) * 43758.5453;
+      const pseudoHash = Math.sin(p1[0] * 12.9898 + p2[1] * 78.233 + frame * 41.719) * 43758.5453;
       const offset = ((pseudoHash - Math.floor(pseudoHash)) - 0.5) * disp;
 
       const newMid: [number, number] = [midX + nx * offset, midY + ny * offset];
 
-      generateFractalLightning(p1, newMid, disp * 0.52, minDisp, pts);
-      generateFractalLightning(newMid, p2, disp * 0.52, minDisp, pts);
+      generateFractalLightning(p1, newMid, disp * 0.58, minDisp, pts);
+      generateFractalLightning(newMid, p2, disp * 0.58, minDisp, pts);
     };
 
     // Helper: Draw Glowing Lightning Path
@@ -129,14 +122,14 @@ export const ElectricBlueLightningSparkCanvas: React.FC<ElectricBlueLightningSpa
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
 
-      // Pass 1: Wide Deep Blue Outer Glow
+      // Pass 1: Wide Deep Sapphire Blue Outer Glow
       ctx.beginPath();
       ctx.moveTo(points[0][0], points[0][1]);
       for (let i = 1; i < points.length; i++) {
         ctx.lineTo(points[i][0], points[i][1]);
       }
-      ctx.lineWidth = coreWidth * 12;
-      ctx.strokeStyle = 'rgba(0, 70, 255, 0.45)';
+      ctx.lineWidth = coreWidth * 14;
+      ctx.strokeStyle = 'rgba(0, 85, 255, 0.45)';
       ctx.stroke();
 
       // Pass 2: Vivid Electric Cyan Inner Halo
@@ -145,8 +138,8 @@ export const ElectricBlueLightningSparkCanvas: React.FC<ElectricBlueLightningSpa
       for (let i = 1; i < points.length; i++) {
         ctx.lineTo(points[i][0], points[i][1]);
       }
-      ctx.lineWidth = coreWidth * 4.5;
-      ctx.strokeStyle = 'rgba(0, 235, 255, 0.85)';
+      ctx.lineWidth = coreWidth * 5.0;
+      ctx.strokeStyle = 'rgba(0, 240, 255, 0.90)';
       ctx.stroke();
 
       // Pass 3: Searing Pure White Core Bolt
@@ -167,39 +160,46 @@ export const ElectricBlueLightningSparkCanvas: React.FC<ElectricBlueLightningSpa
       const strikeAge = frame - activeStrike.start;
       const strikeDuration = activeStrike.end - activeStrike.start;
 
-      // Realistic high-frequency lightning flicker (strike on/off/dim)
-      const isFlickerOn = strikeAge % 3 !== 2;
+      // Realistic high-frequency flicker (visible on 75% of frames)
+      const isFlickerOn = strikeAge % 4 !== 3;
       if (isFlickerOn) {
-        const alpha = Math.max(0.4, 1.0 - (strikeAge / strikeDuration) * 0.6);
+        const alpha = Math.max(0.45, 1.0 - (strikeAge / strikeDuration) * 0.55);
 
         // Main vertical bolt trunk
         const startPt: [number, number] = [
-          width * (0.49 + Math.sin(frame * 1.5) * 0.02),
-          height * 0.22,
+          width * (0.492 + Math.sin(frame * 1.8) * 0.018),
+          height * 0.18,
         ];
         const endPt: [number, number] = [
-          width * (0.495 + Math.cos(frame * 2.1) * 0.025),
+          width * (0.495 + Math.cos(frame * 2.3) * 0.022),
           height * 0.82,
         ];
 
         const mainPoints: [number, number][] = [startPt];
-        generateFractalLightning(startPt, endPt, 320, 18, mainPoints);
-        drawGlowingLightning(mainPoints, 7.5, alpha);
+        generateFractalLightning(startPt, endPt, 350, 16, mainPoints);
+        drawGlowingLightning(mainPoints, 8.5, alpha);
+
+        // Secondary parallel ionized streamer
+        const streamerStart: [number, number] = [startPt[0] + 15, startPt[1] + 30];
+        const streamerEnd: [number, number] = [endPt[0] - 12, endPt[1] - 40];
+        const streamerPoints: [number, number][] = [streamerStart];
+        generateFractalLightning(streamerStart, streamerEnd, 180, 14, streamerPoints);
+        drawGlowingLightning(streamerPoints, 3.5, alpha * 0.65);
 
         // Branching capillaries
-        const branchCount = 5;
+        const branchCount = 6;
         for (let b = 1; b <= branchCount; b++) {
           const idx = Math.floor((b / (branchCount + 1)) * mainPoints.length);
           if (idx < mainPoints.length) {
             const bStart = mainPoints[idx];
             const side = b % 2 === 0 ? 1 : -1;
             const bEnd: [number, number] = [
-              bStart[0] + side * (120 + Math.sin(b * 12 + frame) * 90),
-              bStart[1] + (80 + Math.cos(b * 15 + frame) * 60),
+              bStart[0] + side * (140 + Math.sin(b * 14 + frame) * 90),
+              bStart[1] + (90 + Math.cos(b * 16 + frame) * 70),
             ];
             const bPoints: [number, number][] = [bStart];
-            generateFractalLightning(bStart, bEnd, 120, 14, bPoints);
-            drawGlowingLightning(bPoints, 3.5, alpha * 0.75);
+            generateFractalLightning(bStart, bEnd, 140, 14, bPoints);
+            drawGlowingLightning(bPoints, 4.0, alpha * 0.80);
           }
         }
 
@@ -207,28 +207,28 @@ export const ElectricBlueLightningSparkCanvas: React.FC<ElectricBlueLightningSpa
         const impactGrad = ctx.createRadialGradient(
           endPt[0],
           endPt[1],
-          20,
+          25,
           endPt[0],
           endPt[1],
-          280
+          320
         );
-        impactGrad.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
-        impactGrad.addColorStop(0.25, 'rgba(0, 220, 255, 0.75)');
-        impactGrad.addColorStop(0.65, 'rgba(0, 60, 255, 0.35)');
+        impactGrad.addColorStop(0, 'rgba(255, 255, 255, 0.98)');
+        impactGrad.addColorStop(0.25, 'rgba(0, 230, 255, 0.80)');
+        impactGrad.addColorStop(0.65, 'rgba(0, 70, 255, 0.40)');
         impactGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
         ctx.save();
         ctx.globalCompositeOperation = 'screen';
         ctx.fillStyle = impactGrad;
         ctx.beginPath();
-        ctx.arc(endPt[0], endPt[1], 280, 0, Math.PI * 2);
+        ctx.arc(endPt[0], endPt[1], 320, 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
       }
     }
 
     // 3. Render Electrical Sparks
-    const gravity = 0.45;
+    const gravity = 0.42;
     for (let i = 0; i < sparks.length; i++) {
       const sp = sparks[i];
       if (frame < sp.birthFrame || frame > sp.birthFrame + sp.lifespan) continue;
@@ -245,8 +245,8 @@ export const ElectricBlueLightningSparkCanvas: React.FC<ElectricBlueLightningSpa
       ctx.globalCompositeOperation = 'screen';
 
       ctx.beginPath();
-      ctx.arc(curX, curY, sp.radius * 2.2, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(0, 200, 255, 0.55)';
+      ctx.arc(curX, curY, sp.radius * 2.4, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0, 220, 255, 0.60)';
       ctx.fill();
 
       ctx.beginPath();

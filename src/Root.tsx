@@ -1,3 +1,5 @@
+import { RoyalSapphireSilkFluidWaves4K } from "./presets/RoyalSapphireSilkFluidWaves4K";
+import { CRTStaticVHSGlitch4K } from "./presets/CRTStaticVHSGlitch4K";
 import { ElectricBlueLightningSpark4K } from "./presets/ElectricBlueLightningSpark4K";
 import { AnimeActionSpeedLines4K } from "./presets/AnimeActionSpeedLines4K";
 import { CinematicFilmBurnTransitions4K } from "./presets/CinematicFilmBurnTransitions4K";
@@ -958,6 +960,22 @@ export const RemotionRoot: React.FC = () => {
           id="GeometricLumaMatteLiquidWipe4K"
           component={GeometricLumaMatteLiquidWipe4K}
           durationInFrames={600}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="RoyalSapphireSilkFluidWaves4K"
+          component={RoyalSapphireSilkFluidWaves4K}
+          durationInFrames={600}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="CRTStaticVHSGlitch4K"
+          component={CRTStaticVHSGlitch4K}
+          durationInFrames={360}
           fps={60}
           width={3840}
           height={2160}
