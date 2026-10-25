@@ -1,3 +1,5 @@
+import { MinimalistWhiteAudioSpectrumBars4K } from "./presets/MinimalistWhiteAudioSpectrumBars4K";
+import { CyanTurquoiseAuroraFluidWaves4K } from "./presets/CyanTurquoiseAuroraFluidWaves4K";
 import { VintageCRTSignalLossBeamCollapse4K } from "./presets/VintageCRTSignalLossBeamCollapse4K";
 import { CinematicDeepSpaceTwinklingStars4K } from "./presets/CinematicDeepSpaceTwinklingStars4K";
 import { GreenScreenPolaroidPhotoStack4K } from "./presets/GreenScreenPolaroidPhotoStack4K";
@@ -969,6 +971,22 @@ export const RemotionRoot: React.FC = () => {
         <Composition
           id="GeometricLumaMatteLiquidWipe4K"
           component={GeometricLumaMatteLiquidWipe4K}
+          durationInFrames={600}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="MinimalistWhiteAudioSpectrumBars4K"
+          component={MinimalistWhiteAudioSpectrumBars4K}
+          durationInFrames={720}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="CyanTurquoiseAuroraFluidWaves4K"
+          component={CyanTurquoiseAuroraFluidWaves4K}
           durationInFrames={600}
           fps={60}
           width={3840}
