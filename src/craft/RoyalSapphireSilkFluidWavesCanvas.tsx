@@ -1,128 +1,202 @@
-import React, { useEffect, useRef } from 'react';
-import { useCurrentFrame, useVideoConfig } from 'remotion';
+import React, { useEffect, useRef } from "react";
+import { useCurrentFrame, useVideoConfig } from "remotion";
 
 export interface RoyalSapphireSilkFluidWavesCanvasProps {
-  seed?: number;
+  width?: number;
+  height?: number;
+  speed?: number;
+  scale?: number;
+  brightness?: number;
+  style?: React.CSSProperties;
 }
 
-export const RoyalSapphireSilkFluidWavesCanvas: React.FC<RoyalSapphireSilkFluidWavesCanvasProps> = ({
-  seed = 53,
+const VERTEX_SHADER = `
+attribute vec2 aPosition;
+void main() {
+    gl_Position = vec4(aPosition, 0.0, 1.0);
+}
+`;
+
+const FRAGMENT_SHADER = `
+precision highp float;
+
+uniform vec2 iResolution;
+uniform float iTime;
+uniform float uSpeed;
+uniform float uScale;
+uniform float uBrightness;
+
+void main() {
+    vec2 p = (gl_FragCoord.xy - 0.5 * iResolution.xy) / iResolution.y;
+    p *= uScale;
+    
+    float t = iTime * uSpeed;
+    
+    // Fanning angle
+    float ang = 0.92 - 0.18 * (p.x + 0.5);
+    vec2 vDir = vec2(cos(ang), sin(ang));
+    vec2 uDir = vec2(-sin(ang), cos(ang));
+    
+    float u = dot(p, uDir);
+    float v = dot(p, vDir);
+    
+    // Gentle fluid fabric undulation
+    float warp = 0.065 * sin(v * 2.2 + t * 0.45) + 0.030 * cos(v * 4.5 - t * 0.32);
+    
+    // Folds wave profile (9.8 frequency for 3-4 wide voluptuous silk folds)
+    float fold_phase = (u + warp) * 9.8 - t * 0.32 + 0.6;
+    float z = sin(fold_phase) * 0.5 + 0.5;
+    
+    // Finite difference normals
+    float eps = 0.005;
+    vec2 p_dx = p + vec2(eps, 0.0);
+    vec2 p_dy = p + vec2(0.0, eps);
+    
+    float ang_x = 0.92 - 0.18 * (p_dx.x + 0.5);
+    float u_x = dot(p_dx, vec2(-sin(ang_x), cos(ang_x)));
+    float v_x = dot(p_dx, vec2(cos(ang_x), sin(ang_x)));
+    float w_x = 0.065 * sin(v_x * 2.2 + t * 0.45) + 0.030 * cos(v_x * 4.5 - t * 0.32);
+    float z_x = sin((u_x + w_x) * 9.8 - t * 0.32 + 0.6) * 0.5 + 0.5;
+    
+    float ang_y = 0.92 - 0.18 * (p_dy.x + 0.5);
+    float u_y = dot(p_dy, vec2(-sin(ang_y), cos(ang_y)));
+    float v_y = dot(p_dy, vec2(cos(ang_y), sin(ang_y)));
+    float w_y = 0.065 * sin(v_y * 2.2 + t * 0.45) + 0.030 * cos(v_y * 4.5 - t * 0.32);
+    float z_y = sin((u_y + w_y) * 9.8 - t * 0.32 + 0.6) * 0.5 + 0.5;
+    
+    vec3 norm = normalize(vec3(-(z_x - z) / eps, -(z_y - z) / eps, 0.32));
+    
+    vec3 lightDir = normalize(vec3(-0.55, 0.65, 0.52));
+    vec3 viewDir = vec3(0.0, 0.0, 1.0);
+    
+    float ndotl = max(0.0, dot(norm, lightDir));
+    float diff = (ndotl + 0.38) / 1.38;
+    
+    float ndotv = max(0.0, dot(norm, viewDir));
+    float sheen = pow(1.0 - ndotv, 2.5);
+    
+    // Left-to-right illumination bias matching reference
+    float illum = clamp(1.0 - (p.x * 0.45 - p.y * 0.22), 0.75, 1.25);
+    
+    // Soft Luxurious Royal Sapphire Palette
+    vec3 c_trough = vec3(0.035, 0.085, 0.320); // Midnight ocean navy
+    vec3 c_mid = vec3(0.065, 0.260, 0.680);    // Royal sapphire
+    vec3 c_crest = vec3(0.120, 0.520, 0.780);  // Soft cyan satin
+    vec3 c_spec = vec3(0.250, 0.650, 0.880);   // Sheen glint
+    
+    float z_diff = clamp(z * diff, 0.0, 1.0);
+    vec3 col_base;
+    if (z_diff < 0.42) {
+        col_base = mix(c_trough, c_mid, z_diff / 0.42);
+    } else {
+        col_base = mix(c_mid, c_crest, (z_diff - 0.42) / 0.58);
+    }
+    vec3 col = (col_base + c_spec * (sheen * z * 0.40)) * illum;
+    
+    // 8-bit film grain dither to prevent banding
+    float dither = fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453);
+    vec3 col_final = col + (dither - 0.5) * 0.004;
+    
+    gl_FragColor = vec4(clamp(col_final * uBrightness, 0.0, 1.0), 1.0);
+}
+`;
+
+export const RoyalSapphireSilkFluidWavesCanvas: React.FC<
+  RoyalSapphireSilkFluidWavesCanvasProps
+> = ({
+  width = 3840,
+  height = 2160,
+  speed = 0.35,
+  scale = 1.0,
+  brightness = 1.0,
+  style = {},
 }) => {
-  const frame = useCurrentFrame();
-  const { width, height, fps } = useVideoConfig();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const glRef = useRef<WebGLRenderingContext | null>(null);
+  const programRef = useRef<WebGLProgram | null>(null);
+  const bufferRef = useRef<WebGLBuffer | null>(null);
+  const uniformsRef = useRef<{ [key: string]: WebGLUniformLocation | null }>({});
+
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
 
-    // Mathematical 10.0s seamless loop (600 frames)
-    const loopPeriod = 600;
-    const loopPhase = (frame % loopPeriod) / loopPeriod;
-    const loopAngle = loopPhase * Math.PI * 2;
+    const gl = canvas.getContext("webgl", {
+      preserveDrawingBuffer: true,
+      antialias: true,
+    });
+    if (!gl) return;
+    glRef.current = gl;
 
-    // Base background gradient: Deep Obsidian Midnight Navy
-    const bgGrad = ctx.createLinearGradient(0, 0, width, height);
-    bgGrad.addColorStop(0, '#02071E');
-    bgGrad.addColorStop(0.5, '#05113B');
-    bgGrad.addColorStop(1, '#02061A');
-    ctx.fillStyle = bgGrad;
-    ctx.fillRect(0, 0, width, height);
+    const vs = gl.createShader(gl.VERTEX_SHADER)!;
+    gl.shaderSource(vs, VERTEX_SHADER);
+    gl.compileShader(vs);
 
-    // Helper: 2D Simplex/Harmonic Surface Height Equation
-    const evaluateSurfaceHeight = (u: number, v: number) => {
-      // Diagonal wave flow along u + v
-      const diag = u * 2.8 + v * 1.6;
+    const fs = gl.createShader(gl.FRAGMENT_SHADER)!;
+    gl.shaderSource(fs, FRAGMENT_SHADER);
+    gl.compileShader(fs);
 
-      // Closed loop harmonic components
-      const w1 = Math.sin(diag * 3.5 + Math.cos(loopAngle) * 1.8 + Math.sin(loopAngle) * 1.2);
-      const w2 = Math.cos(diag * 6.2 - Math.sin(loopAngle) * 2.2 + u * 1.5) * 0.55;
-      const w3 = Math.sin((u - v) * 4.0 + Math.cos(loopAngle * 2) * 0.8) * 0.35;
-      const w4 = Math.sin(u * 9.0 + v * 8.0 + Math.sin(loopAngle) * 1.5) * 0.15;
+    const program = gl.createProgram()!;
+    gl.attachShader(program, vs);
+    gl.attachShader(program, fs);
+    gl.linkProgram(program);
+    programRef.current = program;
 
-      return (w1 + w2 + w3 + w4) * 0.5; // -1.0 to 1.0
-    };
+    const quad = new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]);
+    const buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, quad, gl.STATIC_DRAW);
+    bufferRef.current = buffer;
 
-    // Render 3D Silk Drapery Folds using Multi-Layered Spline Ribbons
-    const ribbonCount = 28;
-    const steps = 80;
-
-    for (let r = 0; r < ribbonCount; r++) {
-      const vBase = r / ribbonCount;
-      const pts: [number, number, number][] = []; // x, y, elevation
-
-      for (let i = 0; i <= steps; i++) {
-        const u = i / steps;
-        const hVal = evaluateSurfaceHeight(u, vBase);
-
-        // Project onto canvas: Diagonal sweeping cloth ribbon
-        const screenX = (u * 1.3 - 0.15) * width;
-        const screenY = (vBase * 1.25 - 0.12) * height + hVal * (height * 0.18);
-
-        pts.push([screenX, screenY, hVal]);
-      }
-
-      // Draw Ribbon Fold Surface
-      ctx.save();
-      ctx.beginPath();
-      ctx.moveTo(pts[0][0], pts[0][1]);
-      for (let i = 1; i <= steps; i++) {
-        ctx.lineTo(pts[i][0], pts[i][1]);
-      }
-      ctx.lineTo(pts[steps][0], height + 100);
-      ctx.lineTo(pts[0][0], height + 100);
-      ctx.closePath();
-
-      // Royal Sapphire Silk Gradient with Azure Sheen
-      const rGrad = ctx.createLinearGradient(0, pts[0][1] - 80, width, pts[steps][1] + 80);
-      rGrad.addColorStop(0, '#040F3C');
-      rGrad.addColorStop(0.25, '#0C2B82');
-      rGrad.addColorStop(0.50, '#1E63D6');
-      rGrad.addColorStop(0.70, '#42A5F5');
-      rGrad.addColorStop(0.85, '#85D4FF');
-      rGrad.addColorStop(1, '#081D58');
-
-      ctx.fillStyle = rGrad;
-      ctx.fill();
-
-      // Silky Specular Highlight Edge (Crest Normal Glint)
-      ctx.beginPath();
-      ctx.moveTo(pts[0][0], pts[0][1]);
-      for (let i = 1; i <= steps; i++) {
-        ctx.lineTo(pts[i][0], pts[i][1]);
-      }
-      ctx.lineWidth = 4.5;
-      ctx.strokeStyle = 'rgba(165, 230, 255, 0.45)';
-      ctx.stroke();
-
-      ctx.lineWidth = 1.5;
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)';
-      ctx.stroke();
-
-      ctx.restore();
+    gl.useProgram(program);
+    const uNames = [
+      "iResolution",
+      "iTime",
+      "uSpeed",
+      "uScale",
+      "uBrightness",
+    ];
+    const uMap: { [key: string]: WebGLUniformLocation | null } = {};
+    for (const name of uNames) {
+      uMap[name] = gl.getUniformLocation(program, name);
     }
+    uniformsRef.current = uMap;
 
-    // Micro-Sheen Satin Texture Overlay
-    ctx.save();
-    ctx.globalCompositeOperation = 'overlay';
-    ctx.globalAlpha = 0.15;
-    const vigGrad = ctx.createRadialGradient(
-      width * 0.5,
-      height * 0.45,
-      width * 0.15,
-      width * 0.5,
-      height * 0.5,
-      width * 0.85
-    );
-    vigGrad.addColorStop(0, '#FFFFFF');
-    vigGrad.addColorStop(0.6, '#38B6FF');
-    vigGrad.addColorStop(1, '#000000');
-    ctx.fillStyle = vigGrad;
-    ctx.fillRect(0, 0, width, height);
-    ctx.restore();
-  }, [frame, width, height, seed]);
+    return () => {
+      if (buffer) gl.deleteBuffer(buffer);
+      if (program) gl.deleteProgram(program);
+      if (vs) gl.deleteShader(vs);
+      if (fs) gl.deleteShader(fs);
+    };
+  }, []);
+
+  useEffect(() => {
+    const gl = glRef.current;
+    const program = programRef.current;
+    const buffer = bufferRef.current;
+    const u = uniformsRef.current;
+    if (!gl || !program || !buffer) return;
+
+    gl.viewport(0, 0, width, height);
+    gl.useProgram(program);
+
+    const aPos = gl.getAttribLocation(program, "aPosition");
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.enableVertexAttribArray(aPos);
+    gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+    const timeInSec = frame / fps;
+    if (u.iResolution) gl.uniform2f(u.iResolution, width, height);
+    if (u.iTime) gl.uniform1f(u.iTime, timeInSec);
+    if (u.uSpeed) gl.uniform1f(u.uSpeed, speed);
+    if (u.uScale) gl.uniform1f(u.uScale, scale);
+    if (u.uBrightness) gl.uniform1f(u.uBrightness, brightness);
+
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+  }, [frame, fps, width, height, scale, speed, brightness]);
 
   return (
     <canvas
@@ -130,9 +204,14 @@ export const RoyalSapphireSilkFluidWavesCanvas: React.FC<RoyalSapphireSilkFluidW
       width={width}
       height={height}
       style={{
-        width: '100%',
-        height: '100%',
-        display: 'block',
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        display: "block",
+        backgroundColor: "#030826",
+        ...style,
       }}
     />
   );
