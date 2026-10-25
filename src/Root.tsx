@@ -1,3 +1,4 @@
+import { CinematicInfernoFireWallFlameWipe4K } from "./presets/CinematicInfernoFireWallFlameWipe4K";
 import { MixedMediaCRTGlitchGrungeTransitions4K } from "./presets/MixedMediaCRTGlitchGrungeTransitions4K";
 import { VolumetricWhiteSmokeCloudBurst4K } from "./presets/VolumetricWhiteSmokeCloudBurst4K";
 import { VintagePhotocopierXeroxScanTexture4K } from "./presets/VintagePhotocopierXeroxScanTexture4K";
@@ -963,6 +964,14 @@ export const RemotionRoot: React.FC = () => {
           id="GeometricLumaMatteLiquidWipe4K"
           component={GeometricLumaMatteLiquidWipe4K}
           durationInFrames={600}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="CinematicInfernoFireWallFlameWipe4K"
+          component={CinematicInfernoFireWallFlameWipe4K}
+          durationInFrames={360}
           fps={60}
           width={3840}
           height={2160}
