@@ -1,3 +1,4 @@
+import { CyberpunkOscilloscopeHUD4K } from "./presets/CyberpunkOscilloscopeHUD4K";
 import { MinimalistRedAudioSpectrumBellCurve4K } from "./presets/MinimalistRedAudioSpectrumBellCurve4K";
 import { CinematicRainOnGlassNightBokeh4K } from "./presets/CinematicRainOnGlassNightBokeh4K";
 import { CinematicInfernoFireWallFlameWipe4K } from "./presets/CinematicInfernoFireWallFlameWipe4K";
@@ -966,6 +967,14 @@ export const RemotionRoot: React.FC = () => {
           id="GeometricLumaMatteLiquidWipe4K"
           component={GeometricLumaMatteLiquidWipe4K}
           durationInFrames={600}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="CyberpunkOscilloscopeHUD4K"
+          component={CyberpunkOscilloscopeHUD4K}
+          durationInFrames={660}
           fps={60}
           width={3840}
           height={2160}
