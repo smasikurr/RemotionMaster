@@ -1,3 +1,4 @@
+import { VintageCRTSignalLossBeamCollapse4K } from "./presets/VintageCRTSignalLossBeamCollapse4K";
 import { CinematicDeepSpaceTwinklingStars4K } from "./presets/CinematicDeepSpaceTwinklingStars4K";
 import { GreenScreenPolaroidPhotoStack4K } from "./presets/GreenScreenPolaroidPhotoStack4K";
 import { CyberpunkOscilloscopeHUD4K } from "./presets/CyberpunkOscilloscopeHUD4K";
@@ -969,6 +970,14 @@ export const RemotionRoot: React.FC = () => {
           id="GeometricLumaMatteLiquidWipe4K"
           component={GeometricLumaMatteLiquidWipe4K}
           durationInFrames={600}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="VintageCRTSignalLossBeamCollapse4K"
+          component={VintageCRTSignalLossBeamCollapse4K}
+          durationInFrames={360}
           fps={60}
           width={3840}
           height={2160}
