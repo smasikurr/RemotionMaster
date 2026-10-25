@@ -1,3 +1,5 @@
+import { HalftoneCloudMatrix } from "./presets/HalftoneCloudMatrix";
+import { HalftoneParticleDotWaveTerrain4K } from "./presets/HalftoneParticleDotWaveTerrain4K";
 import { MultiPeakRhythmicAudioWaveform4K } from "./presets/MultiPeakRhythmicAudioWaveform4K";
 import { MinimalistWhiteAudioSpectrumBars4K } from "./presets/MinimalistWhiteAudioSpectrumBars4K";
 import { CyanTurquoiseAuroraFluidWaves4K } from "./presets/CyanTurquoiseAuroraFluidWaves4K";
@@ -973,6 +975,22 @@ export const RemotionRoot: React.FC = () => {
           id="GeometricLumaMatteLiquidWipe4K"
           component={GeometricLumaMatteLiquidWipe4K}
           durationInFrames={600}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="HalftoneCloudMatrix"
+          component={HalftoneCloudMatrix}
+          durationInFrames={720}
+          fps={60}
+          width={3840}
+          height={2160}
+        />
+        <Composition
+          id="HalftoneParticleDotWaveTerrain4K"
+          component={HalftoneParticleDotWaveTerrain4K}
+          durationInFrames={720}
           fps={60}
           width={3840}
           height={2160}
